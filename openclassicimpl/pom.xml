@@ -1,0 +1,185 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.spacehq</groupId>
+    <artifactId>openclassic</artifactId>
+    <version>1.5.6-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>OpenClassic</name>
+    <description>A full client/server implementation of the OpenClassic API.</description>
+    <url>http://github.com/OpenClassic/OpenClassic</url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>http://www.opensource.org/licenses/mit-license.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:OpenClassic/OpenClassic.git</connection>
+        <developerConnection>scm:git:git@github.com:OpenClassic/OpenClassic.git</developerConnection>
+        <url>git@github.com:OpenClassic/OpenClassic/</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>spacehq</id>
+            <name>spacehq-releases</name>
+            <url>http://repo.spacehq.org/content/repositories/release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>spacehq</id>
+            <name>spacehq-snapshots</name>
+            <url>http://repo.spacehq.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <developers>
+        <developer>
+            <id>steveice10</id>
+            <name>Steveice10</name>
+            <email>Steveice10@gmail.com</email>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <!--  Dependencies -->
+    <dependencies>
+        <dependency>
+            <groupId>org.spacehq</groupId>
+            <artifactId>openclassicapi</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl.lwjgl</groupId>
+            <artifactId>lwjgl</artifactId>
+            <version>2.9.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl.lwjgl</groupId>
+            <artifactId>lwjgl_util</artifactId>
+            <version>2.9.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl.lwjgl</groupId>
+            <artifactId>lwjgl_util_applet</artifactId>
+            <version>2.9.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl.lwjgl</groupId>
+            <artifactId>lwjgl-platform</artifactId>
+            <version>2.9.3</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>jline</groupId>
+            <artifactId>jline</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.10.6.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.NullNoname</groupId>
+            <artifactId>Paulscode-SoundSystem</artifactId>
+            <version>2013.04.17-unofficial</version>
+        </dependency>
+        <dependency>
+            <groupId>de.jarnbjo</groupId>
+            <artifactId>j-ogg-all</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.NullNoname</groupId>
+            <artifactId>jorbis</artifactId>
+            <version>0.0.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.NullNoname</groupId>
+            <artifactId>micromod</artifactId>
+            <version>a51</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.SourceUtils</groupId>
+            <artifactId>jspeex</artifactId>
+            <version>b7f6f864f0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.Geo3gamer</groupId>
+            <artifactId>codecjlayermp3</artifactId>
+            <version>-be2b57c018-1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.Geo3gamer</groupId>
+            <artifactId>jdeserialize</artifactId>
+            <version>-dc5f55e3ea-1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>clean install</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+            </plugin>
+            <!-- JAR creation plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Main-Class>org.spacehq.openclassic.game.Main</Main-Class>
+                            <Implementation-Title>${project.name}</Implementation-Title>
+                            <Implementation-Version>${version}</Implementation-Version>
+                            <Implementation-Vendor>Steveice10</Implementation-Vendor>
+                            <Sealed>true</Sealed>
+                        </manifestEntries>
+                        <manifestSections>
+                            <manifestSection>
+                                <name>org/spacebase/openclassic/game</name>
+                                <manifestEntries>
+                                    <Sealed>true</Sealed>
+                                </manifestEntries>
+                            </manifestSection>
+                        </manifestSections>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- JAR dependency addition plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

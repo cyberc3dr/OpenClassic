@@ -1,0 +1,11 @@
+bin
+lib
+.settings
+.classpath
+.project
+.git
+target
+*.iml
+.idea
+.directory
+

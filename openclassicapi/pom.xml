@@ -1,0 +1,140 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.spacehq</groupId>
+	<artifactId>openclassicapi</artifactId>
+	<version>1.5.6-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>OpenClassicAPI</name>
+	<description>The open source API for the custom Minecraft Classic client/server OpenClassic.</description>
+	<url>http://github.com/OpenClassic/OpenClassicAPI/</url>
+
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>http://www.opensource.org/licenses/mit-license.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+    	<connection>scm:git:git@github.com:OpenClassic/OpenClassicAPI.git</connection>
+		<developerConnection>scm:git:git@github.com:OpenClassic/OpenClassicAPI.git</developerConnection>
+		<url>git@github.com:OpenClassic/OpenClassicAPI/</url>
+	</scm>
+
+    <distributionManagement>
+        <repository>
+            <id>spacehq</id>
+            <name>spacehq-releases</name>
+            <url>http://repo.spacehq.org/content/repositories/release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>spacehq</id>
+            <name>spacehq-snapshots</name>
+            <url>http://repo.spacehq.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <developers>
+        <developer>
+            <id>steveice10</id>
+            <name>Steveice10</name>
+            <email>Steveice10@gmail.com</email>
+        </developer>
+    </developers>
+
+    <repositories>
+		<!-- Dead repos
+        <repository>
+            <id>spacehq-releases</id>
+            <url>http://repo.spacehq.org/content/repositories/release/</url>
+        </repository>
+        <repository>
+            <id>spacehq-snapshots</id>
+            <url>http://repo.spacehq.org/content/repositories/snapshots/</url>
+        </repository>
+        -->
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+    </repositories>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<!--  Dependencies -->
+	<dependencies>
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>1.30</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.GeyserMC</groupId>
+			<artifactId>OpenNBT</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.zml2008</groupId>
+			<artifactId>onevent</artifactId>
+			<version>8fb18c3e50</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<defaultGoal>clean install</defaultGoal>
+		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+		<!-- Resources -->
+		<resources>
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+			</plugin>
+			<!-- JAR creation plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.2</version>
+			</plugin>
+			<!-- JAR dependency addition plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
