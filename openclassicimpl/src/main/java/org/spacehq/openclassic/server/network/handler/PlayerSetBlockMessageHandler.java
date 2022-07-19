@@ -20,11 +20,14 @@ public class PlayerSetBlockMessageHandler extends MessageHandler<PlayerSetBlockM
 	public void handle(ClassicSession session, Player player, PlayerSetBlockMessage message) {
 		if(session.getState() != State.GAME) return;
 
+		/*
 		BlockType b = Blocks.fromId(message.getBlock());
+
 		if(b == null || !b.isSelectable()) {
 			player.sendMessage("server.denied-hack.block-type");
 			return;
 		}
+		 */
 
 		// TODO: Reach hack checks and check if player is in position
 
